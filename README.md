@@ -1,2 +1,2 @@
 # calculator
-Calculator site
+Calculator site made with HTML, CSS and Javascript.
