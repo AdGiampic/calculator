@@ -17,7 +17,8 @@ function divide (a,b) {
 }
 
 function writeNmbr (id) {
-    document.getElementById('inputCalc').innerHTML = id;
+    let elem = document.getElementById('inputCalc'); // get the input
+    elem.innerHTML += id; // I keep append the last number
 }
 
 function operate (a,b,op) {
