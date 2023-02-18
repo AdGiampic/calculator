@@ -40,7 +40,7 @@ body{
     width: 110px;
 }
 
-#inputCalc{
+#inputCalc,#displayN{
     width: 192px;
     height: 28px;
     text-align: right; 

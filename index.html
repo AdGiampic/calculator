@@ -13,18 +13,18 @@
     <p>Calculator project made with HTML, CSS and Javascript.</p>
     <div id = "main">
         <div id = "display">
-            <p id = "displayN">Number</p>
+            <p id = "displayN"></p>
             <p id = "inputCalc">
         </div>
         <div id = "buttons">
             <button class = "btn">AC</button>
-            <button class = "btn">C</button>
+            <button class = "btn" id = "erase" onclick="erase()">C</button>
             <button class = "btn">%</button>
             <button class = "btn">/</button>
             <button class = "btn" id ="7" onclick="writeNmbr (id)">7</button>
             <button class = "btn" id ="8" onclick="writeNmbr (id)">8</button>
             <button class = "btn" id ="9" onclick="writeNmbr (id)">9</button>
-            <button class = "btn">+</button>
+            <button class = "btn" id ="+" onclick="calc('+')">+</button>
             <button class = "btn" id ="4" onclick="writeNmbr (id)">4</button>
             <button class = "btn" id ="5" onclick="writeNmbr (id)">5</button>
             <button class = "btn" id ="6" onclick="writeNmbr (id)">6</button>
@@ -34,7 +34,7 @@
             <button class = "btn" id ="3" onclick="writeNmbr (id)">3</button>
             <button class = "btn">x</button>
             <button class = "btn" id ="0" onclick="writeNmbr (id)">0</button>
-            <button class = "btn">.</button>
+            <button class = "btn" id ="," onclick="writeNmbr (id)">.</button>
             <button class = "btn" id = "result">=</button>
         </div>
     </div>
