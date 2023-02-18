@@ -1,5 +1,3 @@
-document.getElementById('inputCalc').focus();
-
 function add (a,b) {
     return a + b;
 }
@@ -16,10 +14,25 @@ function divide (a,b) {
     return a / b;
 }
 
+let elem = document.getElementById('inputCalc');
+
 function writeNmbr (id) {
-    let elem = document.getElementById('inputCalc'); // get the input
-    elem.innerHTML += id; // I keep append the last number
+    elem.innerHTML += id; // I keep append the last number into the screen
 }
+
+function erase () {
+    elem.innerHTML = ''; // erase display
+}
+
+function calc (op) {
+    let firstN = elem.innerHTML; //gets the first number
+    writeNmbr(op);
+    let disp = document.getElementById('displayN');
+    disp.innerHTML = elem.innerHTML;
+    erase()
+    
+}
+
 
 function operate (a,b,op) {
     switch (op) {
