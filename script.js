@@ -11,10 +11,15 @@ function multiply (a,b) {
 }
 
 function divide (a,b) {
-    return a / b;
+    if (b !== 0) {  // prevents a division by 0
+        return a / b;
+    } else {
+        return 'Divide by 0? Seriously?!'
+    }
 }
 
 let elem = document.getElementById('inputCalc');
+let disp = document.getElementById('displayN');
 
 function writeNmbr (id) {
     elem.innerHTML += id; // I keep append the last number into the screen
@@ -24,29 +29,39 @@ function erase () {
     elem.innerHTML = ''; // erase display
 }
 
+function eraseAll () {
+    elem.innerHTML = ''; // erase all
+    disp.innerHTML = '';
+}
+
 function calc (op) {
     let firstN = elem.innerHTML; //gets the first number
     writeNmbr(op);
-    let disp = document.getElementById('displayN');
     disp.innerHTML = elem.innerHTML;
     erase()
     
 }
 
 
-function operate (a,b,op) {
+function operate () {
+    let content = disp.innerHTML
+    op = content.slice(-1);
+    a = content.substring(0, content.length-1); // removes last character (operator)
+    b = elem.innerHTML
     switch (op) {
         case '+' :
-            add(a,b);
+           elem.innerHTML = add(+a,+b);
             break;
         case '-' :
-            subtract(a,b);
+            elem.innerHTML = subtract(+a,+b);
             break;
         case 'x' :
-            multiply (a,b);
+            elem.innerHTML = multiply (+a,+b);
             break;
         case '/' :
-            divide (a,b);
+            elem.innerHTML = divide (+a,+b);
             break;
     }
+    disp.innerHTML = '';
+
 }
