@@ -22,11 +22,20 @@ let elem = document.getElementById('inputCalc');
 let disp = document.getElementById('displayN');
 
 function writeNmbr (id) {
-    elem.innerHTML += id; // I keep append the last number into the screen
+    let content = elem.innerHTML
+    content += id; // I keep append the last number into the screen
+    let commas = content.split(',').length-1
+    if (commas > 1) {
+        elem.innerHTML = content.substring(0, content.length-1);
+        return
+    } else {
+        elem.innerHTML = content;
+    }
 }
 
 function erase () {
-    elem.innerHTML = ''; // erase display
+    let content = elem.innerHTML
+    elem.innerHTML = content.substring(0, content.length-1); // erase last number
 }
 
 function eraseAll () {
@@ -38,7 +47,7 @@ function calc (op) {
     let firstN = elem.innerHTML; //gets the first number
     writeNmbr(op);
     disp.innerHTML = elem.innerHTML;
-    erase()
+    elem.innerHTML = '';
     
 }
 
