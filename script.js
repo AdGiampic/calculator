@@ -24,7 +24,7 @@ let disp = document.getElementById('displayN');
 function writeNmbr (id) {
     let content = elem.innerHTML
     content += id; // I keep append the last number into the screen
-    let commas = content.split(',').length-1
+    let commas = content.split('.').length-1
     if (commas > 1) {
         elem.innerHTML = content.substring(0, content.length-1);
         return
