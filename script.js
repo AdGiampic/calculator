@@ -25,7 +25,7 @@ function writeNmbr (id) {
     let content = elem.innerHTML
     content += id; // I keep append the last number into the screen
     let commas = content.split('.').length-1
-    if (commas > 1) {
+    if (commas > 1) {  // preventing multiple commas into the screen
         elem.innerHTML = content.substring(0, content.length-1);
         return
     } else {
@@ -44,6 +44,11 @@ function eraseAll () {
 }
 
 function calc (op) {
+    let ops = /[-+/*]/;
+    let dispCont = disp.innerHTML;
+    if (ops.test(dispCont) == true) { // if another calculation is present I'll do it right away (pair calculation)
+        operate();
+    }
     let firstN = elem.innerHTML; //gets the first number
     writeNmbr(op);
     disp.innerHTML = elem.innerHTML;
@@ -72,5 +77,4 @@ function operate () {
             break;
     }
     disp.innerHTML = '';
-
 }
