@@ -84,3 +84,22 @@ function operate () {
     }
     disp.innerHTML = '';
 }
+
+// keyboard support
+document.addEventListener('keydown', (event) => {
+    let name = event.key;
+    let code = event.code;
+    if (name !== 'Enter') { // should exclude some key names
+        elem.innerHTML += name;
+    }
+    let elemCont = elem.innerHTML
+    let ops = /[-+/*]/;
+    if (ops.test(elemCont) == true) { // if I press one of the operators I call the calc function
+        calc(name);
+        let dispCont = disp.innerHTML;
+        disp.innerHTML = dispCont.substring(0, dispCont.length-1);
+    }
+    if (name == 'Enter') {
+        operate()
+    }
+  }, false);
