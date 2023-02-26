@@ -18,11 +18,15 @@ function divide (a,b) {
     }
 }
 
+function modulo (a,b) {
+    return a % b;
+}
+
 let elem = document.getElementById('inputCalc');
 let disp = document.getElementById('displayN');
 
 function writeNmbr (id) {
-    let content = elem.innerHTML
+    let content = elem.innerHTML;
     content += id; // I keep append the last number into the screen
     let commas = content.split('.').length-1
     if (commas > 1) {  // preventing multiple commas into the screen
@@ -58,7 +62,7 @@ function calc (op) {
 
 
 function operate () {
-    let content = disp.innerHTML
+    let content = disp.innerHTML;
     op = content.slice(-1);
     a = content.substring(0, content.length-1); // removes last character (operator)
     b = elem.innerHTML
@@ -75,6 +79,8 @@ function operate () {
         case '/' :
             elem.innerHTML = divide (+a,+b);
             break;
+        case '%' :
+            elem.innerHTML = modulo(+a,+b);
     }
     disp.innerHTML = '';
 }
