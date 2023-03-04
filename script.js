@@ -1,3 +1,5 @@
+let ops = /[-+/*]/; // global variable to check if an operations is already present
+
 function add (a,b) {
     return a + b;
 }
@@ -48,7 +50,6 @@ function eraseAll () {
 }
 
 function calc (op) {
-    let ops = /[-+/*]/;
     let dispCont = disp.innerHTML;
     if (ops.test(dispCont) == true) { // if another calculation is present I'll do it right away (pair calculation)
         operate();
@@ -65,7 +66,10 @@ function operate () {
     let content = disp.innerHTML;
     op = content.slice(-1);
     a = content.substring(0, content.length-1); // removes last character (operator)
-    b = elem.innerHTML
+    b = elem.innerHTML;
+    if (ops.test(b) == true) { // if an operation is already present I remove it to prevent a Nan return
+        b = b.substring(0, b.length-1);
+    }
     switch (op) {
         case '+' :
            elem.innerHTML = add(+a,+b);
@@ -82,24 +86,28 @@ function operate () {
         case '%' :
             elem.innerHTML = modulo(+a,+b);
     }
-    disp.innerHTML = '';
 }
 
 // keyboard support
 document.addEventListener('keydown', (event) => {
     let name = event.key;
-    let code = event.code;
-    if (name !== 'Enter') { // should exclude some key names
-        elem.innerHTML += name;
-    }
-    let elemCont = elem.innerHTML
-    let ops = /[-+/*]/;
-    if (ops.test(elemCont) == true) { // if I press one of the operators I call the calc function
-        calc(name);
-        let dispCont = disp.innerHTML;
-        disp.innerHTML = dispCont.substring(0, dispCont.length-1);
-    }
-    if (name == 'Enter') {
-        operate()
+    // do an array with accepted keynames
+    let acceptedInputs = ['1','2','3','4','5','6','7','8','9','0','/','*','+','-','%','=','Enter','Backspace']
+    if (acceptedInputs.includes(name) == true) {
+        if (name !== 'Enter' && name !== 'Backspace') { // should exclude some key names
+            elem.innerHTML += name;
+        }
+        let elemCont = elem.innerHTML;
+        if (ops.test(elemCont) == true) { // if I press one of the operators I call the calc function
+            calc(name);
+            let dispCont = disp.innerHTML;
+            disp.innerHTML = dispCont.substring(0, dispCont.length-1); // prevents to add operation twice but it's causing issues
+        }
+        if (name == 'Enter') {
+            operate()
+        }
+        if (name == 'Backspace') {
+            erase()
+        }
     }
   }, false);
