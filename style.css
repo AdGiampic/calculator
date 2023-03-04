@@ -12,6 +12,7 @@ body{
     flex-direction: column;
     align-items: center;
     background-color: darkslategray;
+    border-radius: 25px;
 }
 
 #display{
@@ -19,7 +20,7 @@ body{
     height: 80px;
     border: 2px solid black;
     margin-top: 10px;
-    background-color: white;
+    background-color: rgb(119, 149, 0);
 }
 
 #buttons{
