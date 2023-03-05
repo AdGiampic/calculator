@@ -2,6 +2,8 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    background-color: rgb(218,165,32);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #main{
@@ -26,7 +28,7 @@ body{
 #buttons-container{
     width: 220px;
     height: 250px; 
-    border: 1px solid black;
+    border: 2px solid black;
     margin-top: 40px;
 }
 
@@ -36,6 +38,12 @@ body{
     border-radius: 50px;
     font-size: 20px;
     background-color: lightgrey;
+    transition: all 0.05s;
+}
+.clicking {
+    transform: scale(1.1);
+    border-color: cornflowerblue;
+    box-shadow: 0 0 10px cornflowerblue;
 }
 
 #result{
