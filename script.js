@@ -28,6 +28,7 @@ let elem = document.getElementById('inputCalc');
 let disp = document.getElementById('displayN');
 
 function writeNmbr (id) {
+    addAnimation(id);
     let content = elem.innerHTML;
     content += id; // I keep append the last number into the screen
     let commas = content.split('.').length-1;
@@ -62,7 +63,6 @@ function calc (op) {
     
 }
 
-
 function operate () {
     let content = disp.innerHTML;
     op = content.slice(-1);
@@ -93,6 +93,16 @@ function operate () {
     disp.innerHTML = '';
 }
 
+function addAnimation (name) { // function that adds a small animation when I click/press corresponding button
+    let selected = document.getElementById(name); // I'll take the corresponding button according to id
+    selected.classList.add('clicking'); // I add the class 'clicking' on buttons to trigger an animation
+}
+
+function removeTransition(e) {
+    if (e.propertyName !== 'transform') return; // skip if no transform property is present
+    this.classList.remove('clicking');
+}
+
 // keyboard support
 document.addEventListener('keydown', (event) => {
     let name = event.key;
@@ -101,6 +111,10 @@ document.addEventListener('keydown', (event) => {
     if (acceptedInputs.includes(name) == true) {
         if (name !== 'Enter' && name !== 'Backspace') { // should exclude some key names
             elem.innerHTML += name;
+            if (name == '*') {
+                name = 'x';  // convert * key to x in order to trigger multiply when needed
+            }
+            addAnimation(name);
         }
         let elemCont = elem.innerHTML;
         if (ops.test(elemCont) == true) { // if I press one of the operators I call the calc function
@@ -115,7 +129,12 @@ document.addEventListener('keydown', (event) => {
             operate()
         }
         if (name == 'Backspace') {
-            erase()
+            erase();
+            name = 'erase';
+            addAnimation(name);
         }
     }
   }, false);
+
+const keys = document.querySelectorAll('.btn');
+keys.forEach(key => key.addEventListener('transitionend',removeTransition))
